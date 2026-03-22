@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "761768078748",
+    "firebase_url": "https://officereservationapp-default-rtdb.firebaseio.com",
+    "project_id": "officereservationapp",
+    "storage_bucket": "officereservationapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761768078748:android:cc99b62bc705bfd26dac59",
+        "android_client_info": {
+          "package_name": "com.example.officereservationapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApaWBXwPCf_B7HO5HuY-KC6piO7HWLhw4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
