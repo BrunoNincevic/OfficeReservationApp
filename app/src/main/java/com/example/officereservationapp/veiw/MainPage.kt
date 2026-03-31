@@ -1,8 +1,6 @@
 package com.example.officereservationapp.veiw
 
-import android.util.Log
 import android.widget.Toast
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -13,11 +11,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -31,14 +27,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -46,7 +38,6 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 
 import androidx.compose.ui.Alignment
@@ -59,8 +50,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.loader.content.Loader
 import com.example.officereservationapp.R
 import com.example.officereservationapp.viewmodel.MyViewModel
 import com.example.officereservationapp.ui.theme.*
@@ -71,7 +60,7 @@ import kotlin.text.isNotEmpty
 @Composable
 fun MainPage(navController: NavHostController, viewModel: MyViewModel) {
 
-    val uiSate by viewModel.uiState.collectAsState()
+    val uiSate by viewModel.deskUiState.collectAsState()
 
 
     val dropDownStatus = viewModel.dropDownStatus
@@ -229,7 +218,6 @@ fun MainPage(navController: NavHostController, viewModel: MyViewModel) {
                                     ), shape = RoundedCornerShape(16.dp),
                                     modifier = Modifier.fillMaxWidth()
                                 )
-                                Log.d("DEBUG", "UserName in Main Page: ${viewModel.name.value}")
                                 Spacer(modifier = Modifier.height(mediumSpacerSize))
                                 Text(
                                     text = "Select Office",

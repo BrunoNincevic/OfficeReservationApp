@@ -41,23 +41,6 @@ class DeskRepository {
         }
     }
 
-        /*
-        ref.addValueEventListener(object : ValueEventListener {
-        override fun onDataChange(snapshot: DataSnapshot) {
-        val desksFetched = snapshot.children.mapNotNull {
-        it.getValue(Desk::class.java)
-        }
-
-        }
-
-        override fun onCancelled(error: DatabaseError) {
-        Log.d("DEBUG", "Error: $error")
-        }
-
-        })
-        */
-
-
     suspend fun checkIfDesksExist(): Boolean {
         val snapshot = FirebaseDatabase.getInstance()
             .getReference("desks")
@@ -67,10 +50,23 @@ class DeskRepository {
     }
 
 
-    fun reserveDesk(deskId: Int, userId: String) {
+    fun reserveDesk(deskId: Int?, userId: String, userName: String) {
         val database2 = FirebaseDatabase.getInstance()
         val referenceForUpdatingDatabase = database2.reference.child("desks")
-        referenceForUpdatingDatabase.child(deskId.toString()).child("reservedByUser").setValue(userId)
+        val referenceForUpdatingUserDatabase = database2.reference.child("users")
+        referenceForUpdatingDatabase.child(deskId.toString()).child("reservedByUserId").setValue(userId)
+        referenceForUpdatingDatabase.child(deskId.toString()).child("reservedByUserName").setValue(userName)
+        referenceForUpdatingUserDatabase.child(userId).child("reservedDeskId").setValue(deskId.toString())
+
+    }
+    fun unreserveDesk(deskId: Int?, userId: String) {
+        val database2 = FirebaseDatabase.getInstance()
+        val referenceForUpdatingDatabase = database2.reference.child("desks")
+        val referenceForUpdatingUserDatabase = database2.reference.child("users")
+        referenceForUpdatingDatabase.child(deskId.toString()).child("reservedByUserId").setValue("")
+        referenceForUpdatingDatabase.child(deskId.toString()).child("reservedByUserName").setValue("")
+        referenceForUpdatingUserDatabase.child(userId).child("reservedDeskId").setValue("")
+
     }
 
     suspend fun createInitialDesksInDatabase() {
@@ -82,64 +78,64 @@ class DeskRepository {
                 id = 1,
                 xCoordinatePercentage = .15f,
                 yCoordinatePercentage = 0.06f,
-                reservedByUser = ""
+                reservedByUserId = ""
             ),
             Desk(
                 id = 2,
                 xCoordinatePercentage = 0.45f,
                 yCoordinatePercentage = 0.06f,
-                reservedByUser = ""
+                reservedByUserId = ""
             ),
             Desk(
                 id = 3,
                 xCoordinatePercentage = 0.75f,
                 yCoordinatePercentage = 0.06f,
-                reservedByUser = ""
+                reservedByUserId = ""
             ),
 
             Desk(
                 id = 4,
                 xCoordinatePercentage = 0.45f,
                 yCoordinatePercentage = 0.26f,
-                reservedByUser = ""
+                reservedByUserId = ""
             ),
             Desk(
                 id = 5,
                 xCoordinatePercentage = 0.75f,
                 yCoordinatePercentage = 0.26f,
-                reservedByUser = ""
+                reservedByUserId = ""
             ),
 
             Desk(
                 id = 6,
                 xCoordinatePercentage = 0.45f,
                 yCoordinatePercentage = 0.36f,
-                reservedByUser = ""
+                reservedByUserId = ""
             ),
             Desk(
                 id = 7,
                 xCoordinatePercentage = 0.75f,
                 yCoordinatePercentage = 0.36f,
-                reservedByUser = ""
+                reservedByUserId = ""
             ),
 
             Desk(
                 id = 8,
                 xCoordinatePercentage = 0.15f,
                 yCoordinatePercentage = 0.56f,
-                reservedByUser = ""
+                reservedByUserId = ""
             ),
             Desk(
                 id = 9,
                 xCoordinatePercentage = 0.45f,
                 yCoordinatePercentage = 0.56f,
-                reservedByUser = ""
+                reservedByUserId = ""
             ),
             Desk(
                 id = 10,
                 xCoordinatePercentage = 0.75f,
                 yCoordinatePercentage = 0.56f,
-                reservedByUser = ""
+                reservedByUserId = ""
             )
         )
         initialDesks.forEach { desk ->

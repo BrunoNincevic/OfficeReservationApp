@@ -113,7 +113,7 @@ fun TitlePage(navController: NavHostController) {
                     modifier = Modifier
                         .size(width = 70.dp, height = 70.dp),
                     onClick = {
-                        navController.navigate("MainPage"){
+                        navController.navigate("LoginPage"){
                             popUpTo("TitlePage") {  inclusive = true }
                         }
                     }

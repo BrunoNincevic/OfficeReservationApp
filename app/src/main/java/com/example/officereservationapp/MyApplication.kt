@@ -7,7 +7,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.officereservationapp.ui.theme.OfficeReservationAppTheme
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.officereservationapp.veiw.LoginPage
 import com.example.officereservationapp.veiw.MainPage
+import com.example.officereservationapp.veiw.RegistrationPage
 import com.example.officereservationapp.veiw.ReservationPage
 import com.example.officereservationapp.veiw.TitlePage
 import com.example.officereservationapp.viewmodel.MyViewModel
@@ -29,7 +31,12 @@ fun MyApplication() {
             composable ("TitlePage") {
                 TitlePage(navController)
             }
-
+            composable ("LoginPage"){
+                LoginPage(navController, sharedViewModel)
+            }
+            composable  ("RegistrationPage" ){
+                RegistrationPage(navController,sharedViewModel)
+            }
             composable("MainPage") {
                 MainPage(navController, sharedViewModel)
             }
